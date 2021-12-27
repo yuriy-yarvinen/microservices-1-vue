@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <div
+    <div
       class="
         d-flex
         justify-content-between
@@ -14,13 +14,12 @@
     >
       <div
         class="btn-toolbar mb-2 mb-md-0"
-        v-if="authenticatedUser.canEdit('users')"
       >
         <router-link to="/users/create" class="btn btn-sm btn-outline-secondary"
           >Add</router-link
         >
       </div>
-    </div> -->
+    </div>
 
     <div class="table-responsive">
       <table class="table table-striped table-sm">
