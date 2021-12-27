@@ -1,5 +1,7 @@
 # microservices-1-vue
 
+vue create project_name
+
 ## Project setup
 ```
 npm install
