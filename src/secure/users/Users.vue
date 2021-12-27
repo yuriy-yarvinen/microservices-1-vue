@@ -60,7 +60,7 @@
       </table>
     </div>
 
-    <!-- <Paginator :last-page="lastPage" @page-changed="load($event)"/> -->
+    <Paginator :last-page="lastPage" @page-changed="load($event)"/>
   </div>
 </template>
 
@@ -69,12 +69,12 @@ import { ref, onMounted, computed } from "vue";
 import axios from "axios";
 // import {Entity} from "@/interfaces/entity";
 import { useStore } from "vuex";
-// import Paginator from "@/secure/components/Paginator.vue";
+import Paginator from "@/secure/components/Paginator.vue";
 
 export default {
   name: "Users",
   components: {
-    // Paginator
+    Paginator
   },
   setup() {
     const users = ref([]);
