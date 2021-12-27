@@ -42,7 +42,7 @@ export default {
     const router = useRouter();
 
     const submit = async () => {
-      const respose = await axios.post("login", {
+      const response = await axios.post("login", {
         email: email.value,
         password: password.value,
         scope: "admin",
@@ -50,9 +50,9 @@ export default {
 
 			axios.defaults.headers.common[
         "Authorization"
-      ] = `Bearer ${respose.data.token}`;
+      ] = `Bearer ${response.data.token}`;
 
-      localStorage.setItem("token", respose.data.token);
+      localStorage.setItem("token", response.data.token);
 
       await router.push("/");
     };
