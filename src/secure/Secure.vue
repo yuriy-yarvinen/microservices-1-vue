@@ -15,8 +15,8 @@
 
 <script>
 import { onMounted, ref } from "vue";
-import Menu from "@/components/Menu.vue";
-import Navigation from "@/components/Navigation.vue";
+import Menu from "@/secure/components/Menu.vue";
+import Navigation from "@/secure/components/Navigation.vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 export default {
@@ -27,7 +27,7 @@ export default {
   setup() {
 		const router = useRouter();
 		const user = ref(null);
-		
+
     onMounted(async () => {
       try {
         const response = await axios.get("user");
