@@ -16,13 +16,10 @@ import {useStore} from "vuex";
 import axios from 'axios';
 export default {
   name: "Nav",
-  props:[
-    'user'
-  ],
   setup() {
     const router = useRouter();
     const store = useStore();
-    // const user = computed(() => store.state.User.user);
+    const user = computed(() => store.state.User.user);
     const logout = async () => {
       await axios.post('logout', {});
 
@@ -31,7 +28,7 @@ export default {
       router.push('/login')
     }
     return {
-      // user,
+      user,
       logout
     }
   }

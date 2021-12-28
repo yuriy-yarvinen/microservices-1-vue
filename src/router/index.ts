@@ -14,6 +14,7 @@ import ProductsCreate from "@/secure/products/ProductsCreate.vue";
 import ProductsEdit from "@/secure/products/ProductsEdit.vue";
 import Orders from "@/secure/orders/Orders.vue";
 import OrderItems from "@/secure/orders/OrderItems.vue";
+import Profile from "@/secure/profile/Profile.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -35,6 +36,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/dashboard',
         component: Dashboard
+      },
+      {
+        path: '/profile', 
+        component: Profile
       },
       {
         path: '/users',

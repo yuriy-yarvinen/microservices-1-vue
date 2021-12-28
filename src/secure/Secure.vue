@@ -1,48 +1,70 @@
 <template>
   <div>
-    <Navigation :user="user"></Navigation>
+    <Navigation />
 
     <div class="container-fluid">
       <div class="row">
-        <Menu></Menu>
+        <Menu />
+
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-          <router-view></router-view>
+          <router-view v-if="user?.id" />
         </main>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { onMounted, ref } from "vue";
 import Menu from "@/secure/components/Menu.vue";
 import Navigation from "@/secure/components/Navigation.vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import { User } from "@/classes/user";
+
 export default {
+  name: "Secure",
   components: {
     Menu,
     Navigation,
   },
   setup() {
-		const router = useRouter();
-		const user = ref(null);
+    const router = useRouter();
+    const user = ref(null);
+    const store = useStore();
 
     onMounted(async () => {
       try {
         const response = await axios.get("user");
-				user.value = response.data.data;
-      } catch (error) {
+
+        const u = response.data.data;
+
+        await store.dispatch(
+          "User/setUser",
+          new User(
+            u.id,
+            u.first_name,
+            u.last_name,
+            u.email,
+            u.role,
+            u.permissions
+          )
+        );
+
+        user.value = u;
+      } catch (e) {
         await router.push("/login");
       }
     });
 
-		return {
-			user
-		};
+    return {
+      user,
+    };
   },
 };
 </script>
+
 
 <style>
 body {
