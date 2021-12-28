@@ -42,6 +42,8 @@
             <td>
               <div class="btn-group mr-2">
                 <router-link
+              v-if="user.canView('orders')"
+
                   :to="`/orders/${order.id}`"
                   class="btn btn-sm btn-outline-secondary"
                   >View</router-link
@@ -71,9 +73,9 @@ export default {
   setup() {
     const orders = ref([]);
     const lastPage = ref(0);
-    // const store = useStore();
+    const store = useStore();
 
-    // const user = computed(() => store.state.User.user);
+    const user = computed(() => store.state.User.user);
 
     const load = async (page = 1) => {
       const response = await axios.get(`orders?page=${page}`);
@@ -97,7 +99,7 @@ export default {
     return {
       orders,
       lastPage,
-      // user,
+      user,
       load,
       exportFile,
     };

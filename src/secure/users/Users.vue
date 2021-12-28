@@ -12,10 +12,11 @@
         border-bottom
       "
     >
-      <div
-        class="btn-toolbar mb-2 mb-md-0"
-      >
-        <router-link to="/users/create" class="btn btn-sm btn-outline-secondary"
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <router-link
+          to="/users/create"
+          class="btn btn-sm btn-outline-secondary"
+          v-if="authenticatedUser.canEdit('users')"
           >Add</router-link
         >
       </div>
@@ -39,6 +40,7 @@
             <td>
               <div
                 class="btn-group mr-2"
+                v-if="authenticatedUser.canEdit('users')"
               >
                 <router-link
                   :to="`/users/${user.id}/edit`"
@@ -58,28 +60,28 @@
       </table>
     </div>
 
-    <Paginator :last-page="lastPage" @page-changed="load($event)"/>
+    <Paginator :last-page="lastPage" @page-changed="load($event)" />
   </div>
 </template>
 
 <script lang="ts">
 import { ref, onMounted, computed } from "vue";
 import axios from "axios";
-import {Entity} from "@/interfaces/entity";
+import { Entity } from "@/interfaces/entity";
 import { useStore } from "vuex";
 import Paginator from "@/secure/components/Paginator.vue";
 
 export default {
   name: "Users",
   components: {
-    Paginator
+    Paginator,
   },
   setup() {
     const users = ref([]);
     const lastPage = ref(0);
     const store = useStore();
 
-    // const authenticatedUser = computed(() => store.state.User.user);
+    const authenticatedUser = computed(() => store.state.User.user);
 
     const load = async (page = 1) => {
       const response = await axios.get(`users?page=${page}`);
@@ -101,7 +103,7 @@ export default {
     return {
       users,
       lastPage,
-      // authenticatedUser,
+      authenticatedUser,
       del,
       load,
     };
