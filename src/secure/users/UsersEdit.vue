@@ -45,11 +45,11 @@ export default {
     const {params} = useRoute();
 
     onMounted(async () => {
-      const response = await axios.get('roles');
+      const response = await axios.get(`${process.env.ADMIN_URL}/roles`);
 
       roles.value = response.data.data;
 
-      const userCall = await axios.get(`users/${params.id}`);
+      const userCall = await axios.get(`${process.env.ADMIN_URL}/users/${params.id}`);
 
       const user: User = userCall.data.data;
 
@@ -60,7 +60,7 @@ export default {
     });
 
     const submit = async () => {
-      await axios.put(`users/${params.id}`, {
+      await axios.put(`${process.env.ADMIN_URL}/users/${params.id}`, {
         first_name: firstName.value,
         last_name: lastName.value,
         email: email.value,

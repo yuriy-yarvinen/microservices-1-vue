@@ -33,7 +33,7 @@ export default {
     const {params} = useRoute();
 
     onMounted(async () => {
-      const response = await axios.get(`orders/${params.id}`);
+      const response = await axios.get(`${process.env.ADMIN_URL}/orders/${params.id}`);
 
       orderItems.value = response.data.data.order_items;
     });

@@ -81,7 +81,7 @@ export default {
     });
 
     const submitInfo = async () => {
-      const response = await axios.put("users/info", {
+      const response = await axios.put(`${process.env.ADMIN_URL}/users/info`, {
         first_name: firstName.value,
         last_name: lastName.value,
         email: email.value,
@@ -103,7 +103,7 @@ export default {
     };
 
     const submitPassword = async () => {
-      await axios.put("users/password", {
+      await axios.put(`${process.env.ADMIN_URL}/users/password`, {
         password: password.value,
         password_confirm: passwordConfirm.value,
       });

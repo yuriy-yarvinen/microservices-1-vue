@@ -21,7 +21,7 @@ export default {
     const store = useStore();
     const user = computed(() => store.state.User.user);
     const logout = async () => {
-      await axios.post('logout', {});
+      await axios.post(`${process.env.ADMIN_URL}/logout`, {});
       
       router.push('/login')
     }

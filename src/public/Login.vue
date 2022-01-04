@@ -42,7 +42,7 @@ export default {
     const router = useRouter();
 
     const submit = async () => {
-      await axios.post("login", {
+      await axios.post(`${process.env.USERS_URL}/login`, {
         email: email.value,
         password: password.value,
         scope: "admin",

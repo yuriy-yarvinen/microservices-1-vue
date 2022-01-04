@@ -40,7 +40,7 @@ export default {
     const router = useRouter();
 
     const submit = async () => {
-      await axios.post('products', {
+      await axios.post(`${process.env.ADMIN_URL}/products`, {
         title: title.value,
         description: description.value,
         image: image.value,

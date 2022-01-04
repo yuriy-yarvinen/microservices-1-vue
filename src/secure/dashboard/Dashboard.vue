@@ -34,7 +34,7 @@ export default {
         },
       });
 
-      const response = await axios.get("chart");
+      const response = await axios.get(`${process.env.ADMIN_URL}/chart`);
 
       const records = response.data.data;
 

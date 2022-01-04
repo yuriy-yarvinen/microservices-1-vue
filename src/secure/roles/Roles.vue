@@ -72,14 +72,14 @@ export default {
     const user = computed(() => store.state.User.user);
 
     onMounted(async () => {
-      const response = await axios.get("roles");
+      const response = await axios.get(`${process.env.ADMIN_URL}/roles`);
 
       roles.value = response.data.data;
     });
 
     const del = async (id: number) => {
       if (confirm("Are you sure you want to delete this record?")) {
-        await axios.delete(`roles/${id}`);
+        await axios.delete(`${process.env.ADMIN_URL}/roles/${id}`);
 
         roles.value = roles.value.filter((e: Entity) => e.id !== id);
       }

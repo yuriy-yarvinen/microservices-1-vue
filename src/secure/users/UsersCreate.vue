@@ -43,13 +43,13 @@ export default {
     const router = useRouter();
 
     onMounted(async () => {
-      const response = await axios.get('roles');
+      const response = await axios.get(`${process.env.ADMIN_URL}/roles`);
 
       roles.value = response.data.data;
     });
 
     const submit = async () => {
-      await axios.post('users', {
+      await axios.post(`${process.env.ADMIN_URL}/users`, {
         first_name: firstName.value,
         last_name: lastName.value,
         email: email.value,

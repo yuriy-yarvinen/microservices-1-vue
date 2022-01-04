@@ -36,7 +36,7 @@ export default {
     const router = useRouter();
 
     onMounted(async () => {
-      const response = await axios.get('permissions');
+      const response = await axios.get(`${process.env.ADMIN_URL}/permissions`);
 
       permissions.value = response.data.data;
     });
@@ -51,7 +51,7 @@ export default {
     }
 
     const submit = async () => {
-      await axios.post('roles', {
+      await axios.post(`${process.env.ADMIN_URL}/roles`, {
         name: name.value,
         permissions: selected.value
       });
