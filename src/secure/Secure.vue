@@ -36,7 +36,7 @@ export default {
 
     onMounted(async () => {
       try {
-        const response = await axios.get(`${process.env.ADMIN_URL}/user`);
+        const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL}/user`);
 
         const u = response.data.data;
 

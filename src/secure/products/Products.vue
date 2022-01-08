@@ -81,7 +81,7 @@ export default {
     const user = computed(() => store.state.User.user);
 
     const load = async (page = 1) => {
-      const response = await axios.get(`${process.env.ADMIN_URL}/products?page=${page}`);
+      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL}/products?page=${page}`);
 
       products.value = response.data.data;
       lastPage.value = response.data.meta.last_page;
@@ -91,7 +91,7 @@ export default {
 
     const del = async (id: number) => {
       if (confirm("Are you sure you want to delete this record?")) {
-        await axios.delete(`${process.env.ADMIN_URL}/products/${id}`);
+        await axios.delete(`${process.env.VUE_APP_ADMIN_URL}/products/${id}`);
 
         products.value = products.value.filter((e: Entity) => e.id !== id);
       }
