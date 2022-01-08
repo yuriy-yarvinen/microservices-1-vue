@@ -78,7 +78,7 @@ export default {
     const user = computed(() => store.state.User.user);
 
     const load = async (page = 1) => {
-      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL}/orders?page=${page}`);
+      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL_PATH_ADMIN}/orders?page=${page}`);
 
       orders.value = response.data.data;
       lastPage.value = response.data.meta.last_page;
@@ -87,7 +87,7 @@ export default {
     onMounted(load);
 
     const exportFile = async () => {
-      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL}/export`, { responseType: "blob" });
+      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL_PATH_ADMIN}/export`, { responseType: "blob" });
       const blob = new Blob([response.data], { type: "text/csv" });
       const downloadUrl = window.URL.createObjectURL(response.data);
       const link = document.createElement("a");

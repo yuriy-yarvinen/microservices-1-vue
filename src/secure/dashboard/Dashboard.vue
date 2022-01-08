@@ -34,7 +34,7 @@ export default {
         },
       });
 
-      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL}/chart`);
+      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL_PATH_ADMIN}/chart`);
 
       const records = response.data.data;
 

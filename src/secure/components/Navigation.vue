@@ -21,7 +21,7 @@ export default {
     const store = useStore();
     const user = computed(() => store.state.User.user);
     const logout = async () => {
-      await axios.post(`${process.env.VUE_APP_ADMIN_URL}/logout`, {});
+      await axios.post(`${process.env.VUE_APP_ADMIN_URL_PATH_ADMIN}/logout`, {});
       
       router.push('/login')
     }

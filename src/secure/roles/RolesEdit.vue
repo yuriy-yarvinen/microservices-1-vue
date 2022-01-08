@@ -39,11 +39,11 @@ export default {
     const {params} = useRoute();
 
     onMounted(async () => {
-      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL}/permissions`);
+      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL_PATH_ADMIN}/permissions`);
 
       permissions.value = response.data.data;
 
-      const roleCall = await axios.get(`${process.env.VUE_APP_ADMIN_URL}/roles/${params.id}`);
+      const roleCall = await axios.get(`${process.env.VUE_APP_ADMIN_URL_PATH_ADMIN}/roles/${params.id}`);
 
       const role: Role = roleCall.data.data;
 
@@ -61,7 +61,7 @@ export default {
     }
 
     const submit = async () => {
-      await axios.put(`${process.env.VUE_APP_ADMIN_URL}/roles/${params.id}`, {
+      await axios.put(`${process.env.VUE_APP_ADMIN_URL_PATH_ADMIN}/roles/${params.id}`, {
         name: name.value,
         permissions: selected.value
       });

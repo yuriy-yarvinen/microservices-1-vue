@@ -42,7 +42,7 @@ export default {
     const {params} = useRoute();
 
     onMounted(async () => {
-      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL}/products/${params.id}`);
+      const response = await axios.get(`${process.env.VUE_APP_ADMIN_URL_PATH_ADMIN}/products/${params.id}`);
 
       const product: Product = response.data.data;
 
@@ -53,7 +53,7 @@ export default {
     });
 
     const submit = async () => {
-      await axios.put(`${process.env.VUE_APP_ADMIN_URL}/products/${params.id}`, {
+      await axios.put(`${process.env.VUE_APP_ADMIN_URL_PATH_ADMIN}/products/${params.id}`, {
         title: title.value,
         description: description.value,
         image: image.value,
